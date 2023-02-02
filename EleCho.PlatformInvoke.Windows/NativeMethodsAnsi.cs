@@ -9,7 +9,7 @@ public unsafe class NativeMethodsAnsi
     #region AnyPopup
     [DllImport("user32.dll", EntryPoint = "AppendMenuA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
-    public static extern bool AppendMenu([In] nint hMenu, [In] MenuFlag uFlags, [In] nuint uIDNewItem, [In, Optional] string lpNewItem);
+    public static extern bool AppendMenu([In] nint hMenu, [In] MenuFlag uFlags, [In] nuint uIDNewItem, [In, Optional] string? lpNewItem);
     [DllImport("user32.dll", EntryPoint = "AppendMenuA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
     public static extern bool AppendMenu([In] nint hMenu, [In] MenuFlag uFlags, [In] nuint uIDNewItem, [In, Optional] byte* lpNewItem);
@@ -45,7 +45,7 @@ public unsafe class NativeMethodsAnsi
     #region ChangeMenu
     [DllImport("user32.dll", EntryPoint = "ChangeMenuA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
-    public extern static bool ChangeMenu([In, NativeType("HMENU")] nint hMenu, [In] uint cmd, [In, Optional] string szNewItem, [In] uint cmdInsert, [In] uint flags);
+    public extern static bool ChangeMenu([In, NativeType("HMENU")] nint hMenu, [In] uint cmd, [In, Optional] string? szNewItem, [In] uint cmdInsert, [In] uint flags);
     [DllImport("user32.dll", EntryPoint = "ChangeMenuA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
     public extern static bool ChangeMenu([In, NativeType("HMENU")] nint hMenu, [In] uint cmd, [In, Optional] byte* szNewItem, [In] uint cmdInsert, [In] uint flags);
@@ -125,6 +125,20 @@ public unsafe class NativeMethodsAnsi
     [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
     public extern static DisplayChangeResult ChangeDisplaySettings([In, Optional] ref DeviceModeA devMode);
+
+    [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static DisplayChangeResult ChangeDisplaySettingsEx([In, Optional] string? deviceName, [In, Optional] ref DeviceModeA devMode, [Reserved, NativeType("HWND")] nint hwnd, [In] ChangeDisplaySettingsFlag dwFlags, [In, Optional] ref VideoParameters lParam);
+
+    [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static DisplayChangeResult ChangeDisplaySettingsEx([In, Optional] char* lpszDeviceName, [In, Optional] ref DeviceModeA devMode, [Reserved, NativeType("HWND")] nint hwnd, [In] ChangeDisplaySettingsFlag dwFlags, [In, Optional] ref VideoParameters lParam);
+    #endregion
+
+    #region CopyAcceleratorTable
+    [DllImport("user32.dll", EntryPoint = "CopyAcceleratorTableA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static int CopyAcceleratorTable([In, NativeType("HACCEL")] nint hAccelSrc, [Out, Optional] Accelerator[]? accelDst, [In] int cAccelEntries);
     #endregion
 
 }

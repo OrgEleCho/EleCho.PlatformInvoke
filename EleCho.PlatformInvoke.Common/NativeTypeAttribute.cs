@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace EleCho.PlatformInvoke
 {
-    [AttributeUsage(AttributeTargets.ReturnValue | AttributeTargets.Parameter | AttributeTargets.Struct | AttributeTargets.Delegate, AllowMultiple = false, Inherited = false)]
-    public class NativeTypeAttribute : Attribute
+    [AttributeUsage(AttributeTargets.ReturnValue | AttributeTargets.Parameter | AttributeTargets.Struct | AttributeTargets.Delegate, Inherited = false, AllowMultiple = false)]
+    public sealed class NativeTypeAttribute : Attribute
     {
         public NativeTypeAttribute(string type)
         {

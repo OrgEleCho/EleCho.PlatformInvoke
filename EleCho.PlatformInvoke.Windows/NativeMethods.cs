@@ -56,7 +56,7 @@ public unsafe class NativeMethods
     #region AnyPopup
     [DllImport("user32.dll", EntryPoint = "AppendMenuW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    private static extern bool AppendMenu([In] nint hMenu, [In] MenuFlag uFlags, [In] nuint uIDNewItem, [In, Optional] string lpNewItem);
+    private static extern bool AppendMenu([In] nint hMenu, [In] MenuFlag uFlags, [In] nuint uIDNewItem, [In, Optional] string? lpNewItem);
 
     [DllImport("user32.dll", EntryPoint = "AppendMenuW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
@@ -169,12 +169,20 @@ public unsafe class NativeMethods
     [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
     public extern static DisplayChangeResult ChangeDisplaySettings([In, Optional] ref DeviceMode devMode);
+
+    [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static DisplayChangeResult ChangeDisplaySettings([In, Optional] string? deviceName, [In, Optional] ref DeviceMode devMode, [Reserved, NativeType("HWND")] nint hwnd, [In] ChangeDisplaySettingsFlag dwFlags, [In, Optional] ref VideoParameters lParam);
+
+    [DllImport("user32.dll", EntryPoint = "ChangeDisplaySettingsExW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static DisplayChangeResult ChangeDisplaySettings([In, Optional] char* lpszDeviceName, [In, Optional] ref DeviceMode devMode, [Reserved, NativeType("HWND")] nint hwnd, [In] ChangeDisplaySettingsFlag dwFlags, [In, Optional] ref VideoParameters lParam);
     #endregion
 
     #region ChangeMenu
     [DllImport("user32.dll", EntryPoint = "ChangeMenuW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    public extern static bool ChangeMenu([In, NativeType("HMENU")] nint hMenu, [In] uint cmd, [In, Optional] string szNewItem, [In] uint cmdInsert, [In] uint flags);
+    public extern static bool ChangeMenu([In, NativeType("HMENU")] nint hMenu, [In] uint cmd, [In, Optional] string? szNewItem, [In] uint cmdInsert, [In] uint flags);
     #endregion
 
     #region ChangeWindowMessageFilter
@@ -323,11 +331,42 @@ public unsafe class NativeMethods
     public extern static bool CloseDesktop([In, NativeType("HDESK")] nint hDesktop);
     #endregion
 
+    #region CloseGestureInfoHandle
+    [DllImport("user32.dll", EntryPoint = "CloseGestureInfoHandle",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CloseGestureInfoHandle([In, NativeType("HGESTUREINFO")] nint hGestureInfo);
+    #endregion
 
+    #region CloseTouchInputHandle
+    [DllImport("user32.dll", EntryPoint = "CloseTouchInputHandle",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CloseTouchInputHandle([In, NativeType("HTOUCHINPUT")] nint hTouchInput);
+    #endregion
 
+    #region CloseWindow
+    [DllImport("user32.dll", EntryPoint = "CloseWindow",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CloseWindow([In, NativeType("HWND")] nint hWnd);
+    #endregion
 
+    #region CloseWindowStation
+    [DllImport("user32.dll", EntryPoint = "CloseWindowStation",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CloseWindowStation([In, NativeType("HWINSTA")] nint hWinSta);
+    #endregion
 
+    #region CopyAcceleratorTable
+    [DllImport("user32.dll", EntryPoint = "CopyAcceleratorTableW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static int CopyAcceleratorTableW([In, NativeType("HACCEL")] nint hAccelSrc, [Out, Optional] Accelerator[]? accelDst, [In] int cAccelEntries);
+    #endregion
 
+    #region CopyIcon
+    [DllImport("user32.dll", EntryPoint = "CopyIcon",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    [return: NativeType("HICON")]
+    public extern static nint CopyIcon([In, NativeType("HICON")] nint hIcon);
+    #endregion
 
 
 

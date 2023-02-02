@@ -8,33 +8,62 @@ using System.Text;
 
 internal unsafe class Program
 {
-    public const string Dll = "C:\\Users\\slime\\source\\repos\\PlatformInvoke\\x64\\Debug\\ExportTestingViewer.dll";
+    public const string TestDll = "C:\\Users\\slime\\source\\repos\\PlatformInvoke\\x64\\Debug\\ExportTestingViewer.dll";
 
-    [DllImport(Dll, EntryPoint = "char_next_w",
-               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    private extern static void CharNext(byte* str);
-
-
-    [DllImport(Dll, EntryPoint = "Check_DEVMODE",
-               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    private extern static void Check_DEVMODE(DeviceMode* str);
-
-
-    [DllImport(Dll, EntryPoint = "Check_DEVMODE",
-               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    private extern static void Check_DEVMODE([In]ref DeviceMode str);
-    private static void Main(string[] args)
+    [StructLayout(LayoutKind.Sequential)]
+    struct SomeIntegers
     {
-        DeviceMode deviceMode = new DeviceMode();
-        deviceMode.DeviceName = "Fuck you world";
-        deviceMode.FormName = "Fuck you world";
-        deviceMode.Reserved2 = 114514;
-
-        Check_DEVMODE(&deviceMode);
+        public byte A;              // 1 byte
+                                    // 3 byte
+        public TwoIntegers B;       // 8 bytes
+        public byte C;              // 1 byte
+                                    // 3 bytes
     }
 
-    private static void TestAllApis(Type defineType)
+    [StructLayout(LayoutKind.Sequential)]
+    struct TwoIntegers
     {
+        int A;    // 4 bytes
+        byte B;   // 1 byte
+                  // 3 bytes
+    }
 
+    public struct QWQ
+    {
+        byte A;
+        Int128 B;
+    }
+    readonly struct Temp
+    {
+        readonly int a,b;
+    }
+
+    private static void Main(string[] args)
+    {
+        //foreach (var attr in typeof(MyInt128).GetCustomAttributes(true))
+        //    Console.WriteLine(attr.GetType());
+        Console.WriteLine(sizeof(SomeIntegers));
+    }
+
+}
+
+static unsafe class Utils
+{
+    public static void SetStringUni(nint ptr, string? value)
+    {
+        char* p = (char*)ptr;
+
+        if (value == null)
+        {
+            p[0] = '\0';
+            return;
+        }
+
+        int size = value.Length * 2;
+        IntPtr newptr = Marshal.StringToHGlobalUni(value);
+        Buffer.MemoryCopy((void*)newptr, (void*)p, size, size);
+        Marshal.FreeHGlobal(newptr);
+
+        p[value.Length] = '\0';
     }
 }

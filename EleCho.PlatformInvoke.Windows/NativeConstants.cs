@@ -55,7 +55,7 @@ public enum WindowStyle : uint
     Caption          = 0x00C00000,     /* BORDER | DLGFRAME  */
     Border           = 0x00800000,
     /// <summary>
-    /// DLGFRAME
+    /// 原名: DLGFRAME
     /// </summary>
     DialogFrame         = 0x00400000,
     VScroll          = 0x00200000,
@@ -93,7 +93,7 @@ public enum WindowStyleExtened : uint
     /// <summary>
     /// Dialog Modal Frame
     /// </summary>
-    DialogModalFrame       = 0x00000001,
+    DialogModalFrame    = 0x00000001,
     NoParentNotify      = 0x00000004,
     TopMost             = 0x00000008,
     AcceptFiles         = 0x00000010,
@@ -453,34 +453,34 @@ public enum DeviceModePaperSize : short
     Inch12x11              = 90,  /* 12 x 11 in                      */
     JapaneseEnvelopeYou4          = 91,  /* Japanese Envelope You #4        */
     JapaneseEnvelopeYou4Rotated  = 92,  /* Japanese Envelope You #4 Rotated*/
-    Prc16K               = 93,  /* PRC 16K 146 x 215 mm            */
-    Prc32K               = 94,  /* PRC 32K 97 x 151 mm             */
-    Prc32KBIG            = 95,  /* PRC 32K(Big) 97 x 151 mm        */
-    PrcEnvelope1             = 96,  /* PRC Envelope #1 102 x 165 mm    */
-    PrcEnvelope2             = 97,  /* PRC Envelope #2 102 x 176 mm    */
-    PrcEnvelope3             = 98,  /* PRC Envelope #3 125 x 176 mm    */
-    PrcEnvelope4             = 99,  /* PRC Envelope #4 110 x 208 mm    */
-    PrcEnvelope5             = 100, /* PRC Envelope #5 110 x 220 mm    */
-    PrcEnvelope6             = 101, /* PRC Envelope #6 120 x 230 mm    */
-    PrcEnvelope7             = 102, /* PRC Envelope #7 160 x 230 mm    */
-    PrcEnvelope8             = 103, /* PRC Envelope #8 120 x 309 mm    */
-    PrcEnvelope9             = 104, /* PRC Envelope #9 229 x 324 mm    */
-    PrcEnvelope10            = 105, /* PRC Envelope #10 324 x 458 mm   */
-    Prc16KRotated       = 106, /* PRC 16K Rotated                 */
-    Prc32KRotated       = 107, /* PRC 32K Rotated                 */
-    Prc32KBigRotated    = 108, /* PRC 32K(Big) Rotated            */
-    PrcEnvelope1Rotated     = 109, /* PRC Envelope #1 Rotated 165 x 102 mm */
-    PrcEnvelope2Rotated     = 110, /* PRC Envelope #2 Rotated 176 x 102 mm */
-    PrcEnvelope3Rotated     = 111, /* PRC Envelope #3 Rotated 176 x 125 mm */
-    PrcEnvelope4Rotated     = 112, /* PRC Envelope #4 Rotated 208 x 110 mm */
-    PrcEnvelope5Rotated     = 113, /* PRC Envelope #5 Rotated 220 x 110 mm */
-    PrcEnvelope6Rotated     = 114, /* PRC Envelope #6 Rotated 230 x 120 mm */
-    PrcEnvelope7Rotated     = 115, /* PRC Envelope #7 Rotated 230 x 160 mm */
-    PrcEnvelope8Rotated     = 116, /* PRC Envelope #8 Rotated 309 x 120 mm */
-    PrcEnvelope9Rotated     = 117, /* PRC Envelope #9 Rotated 324 x 229 mm */
-    PrcEnvelope10Rotated    = 118, /* PRC Envelope #10 Rotated 458 x 324 mm */
+    Chinese16K               = 93,  /* PRC 16K 146 x 215 mm            */
+    Chinese32K               = 94,  /* PRC 32K 97 x 151 mm             */
+    Chinese32KBIG            = 95,  /* PRC 32K(Big) 97 x 151 mm        */
+    ChineseEnvelope1             = 96,  /* PRC Envelope #1 102 x 165 mm    */
+    ChineseEnvelope2             = 97,  /* PRC Envelope #2 102 x 176 mm    */
+    ChineseEnvelope3             = 98,  /* PRC Envelope #3 125 x 176 mm    */
+    ChineseEnvelope4             = 99,  /* PRC Envelope #4 110 x 208 mm    */
+    ChineseEnvelope5             = 100, /* PRC Envelope #5 110 x 220 mm    */
+    ChineseEnvelope6             = 101, /* PRC Envelope #6 120 x 230 mm    */
+    ChineseEnvelope7             = 102, /* PRC Envelope #7 160 x 230 mm    */
+    ChineseEnvelope8             = 103, /* PRC Envelope #8 120 x 309 mm    */
+    ChineseEnvelope9             = 104, /* PRC Envelope #9 229 x 324 mm    */
+    ChineseEnvelope10            = 105, /* PRC Envelope #10 324 x 458 mm   */
+    Chinese16KRotated       = 106, /* PRC 16K Rotated                 */
+    Chinese32KRotated       = 107, /* PRC 32K Rotated                 */
+    Chinese32KBigRotated    = 108, /* PRC 32K(Big) Rotated            */
+    ChineseEnvelope1Rotated     = 109, /* PRC Envelope #1 Rotated 165 x 102 mm */
+    ChineseEnvelope2Rotated     = 110, /* PRC Envelope #2 Rotated 176 x 102 mm */
+    ChineseEnvelope3Rotated     = 111, /* PRC Envelope #3 Rotated 176 x 125 mm */
+    ChineseEnvelope4Rotated     = 112, /* PRC Envelope #4 Rotated 208 x 110 mm */
+    ChineseEnvelope5Rotated     = 113, /* PRC Envelope #5 Rotated 220 x 110 mm */
+    ChineseEnvelope6Rotated     = 114, /* PRC Envelope #6 Rotated 230 x 120 mm */
+    ChineseEnvelope7Rotated     = 115, /* PRC Envelope #7 Rotated 230 x 160 mm */
+    ChineseEnvelope8Rotated     = 116, /* PRC Envelope #8 Rotated 309 x 120 mm */
+    ChineseEnvelope9Rotated     = 117, /* PRC Envelope #9 Rotated 324 x 229 mm */
+    ChineseEnvelope10Rotated    = 118, /* PRC Envelope #10 Rotated 458 x 324 mm */
 
-    Last               = PrcEnvelope10Rotated
+    Last               = ChineseEnvelope10Rotated
 }
 
 public enum DeviceModeBin : short
@@ -633,6 +633,91 @@ public enum DisplayChangeResult : int
     BadDualView     = -6,
 }
 
+/// <summary>
+/// Flags for ChangeDisplaySettings
+/// </summary>
+public enum ChangeDisplaySettingsFlag : uint
+{
+    UpdateRegistry           = 0x00000001,
+    Test                     = 0x00000002,
+    FullScreen               = 0x00000004,
+    Global                   = 0x00000008,
+    SetPrimary               = 0x00000010,
+    VideoParameters          = 0x00000020,
+    EnableUnsafeModes        = 0x00000100,
+    DisableUnsafeModes       = 0x00000200,
+    Reset                    = 0x40000000,
+    ResetExtened             = 0x20000000,
+    NoReset                  = 0x10000000,
+}
+
+public enum VideoParametersFlag : uint
+{
+    TvMode         = 0x0001,
+    TvStandard     = 0x0002,
+    Flicker        = 0x0004,
+    Overscan       = 0x0008,
+    MaxUnscaled    = 0x0010,   // do not use on SET
+    Position       = 0x0020,
+    Brightness     = 0x0040,
+    Contrast       = 0x0080,
+    CopyProtect    = 0x0100,
+}
+
+public enum VideoParametersCommand : uint
+{
+    Get          = 0x0001,  // size set, return caps.
+    // returned Flags = 0 if not supported.
+    Set          = 0x0002,  // size and params set.
+}
+
+public enum VideoParametersMode : uint
+{
+    /// <summary>
+    /// WIN_GRAPHICS
+    /// </summary>
+    WinGraphics    = 0x0001,
+    TvPlayback     = 0x0002,  // optimize for TV video playback
+}
+
+public enum VideoParametersTvStandard : uint
+{
+    NtscM   = 0x0001,  //        75 IRE Setup
+    NtscMJ  = 0x0002,  // Japan,  0 IRE Setup
+    PalB    = 0x0004,
+    PalD    = 0x0008,
+    PalH    = 0x0010,
+    PalI    = 0x0020,
+    PalM    = 0x0040,
+    PalN    = 0x0080,
+    SecamB  = 0x0100,
+    SecamD  = 0x0200,
+    SecamG  = 0x0400,
+    SecamH  = 0x0800,
+    SecamK  = 0x1000,
+    SecamK1 = 0x2000,
+    SecamL  = 0x4000,
+    WinVga  = 0x8000,
+    // and the rest
+    Ntsc433 = 0x00010000,
+    PalG    = 0x00020000,
+    Pal60   = 0x00040000,
+    SecamL1 = 0x00080000,
+}
+
+public enum VideoParametersCopyProtectionType : uint
+{
+    ApsTrigger   = 0x0001,  // DVD trigger bits only
+    Macrovision  = 0x0002,  // full macrovision data available
+}
+
+public enum VideoParametersCopyProtectionCommand : uint
+{
+    Activate      = 0x0001,  // CP command type
+    Deactivate    = 0x0002,
+    Change        = 0x0004,
+}
+
 public enum MessageFilterFlag : uint
 {
     Add     = 1,
@@ -656,9 +741,12 @@ public enum MessageFilterInfo : uint
 /// </summary>
 public enum CodePage : ushort
 {
-    AnsiCodePage      = 0,
-    MacintoshCodePage = 2,
-    OemCodePage       = 1,
+    /// <summary>
+    /// ANSICP
+    /// </summary>
+    Ansi      = 0,
+    Macintosh = 2,
+    Oem       = 1,
 }
 
 public enum ButtonState : uint
@@ -676,4 +764,16 @@ public enum ChildWindowFromPointFlags : uint
     SkipInvisible     = 0x0001,
     SkipDisabled      = 0x0002,
     SkipTransparent   = 0x0004,
+}
+
+public enum AcceleratorModifier : byte
+{
+    /*
+     * Defines for the fVirt field of the Accelerator table structure.
+     */
+    VirtualKey   = 0x01,          /* Assumed to be == TRUE */
+    NoInvert     = 0x02,
+    Shift        = 0x04,
+    Control      = 0x08,
+    Alt          = 0x10,
 }

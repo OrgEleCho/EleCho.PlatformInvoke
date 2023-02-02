@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -10,6 +10,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EleCho.PlatformInvoke.Windows\EleCho.PlatformInvoke.Windows.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Temp">
+      <HintPath>..\..\..\funny_repos\Temp\Temp\bin\Debug\net6.0-windows\Temp.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

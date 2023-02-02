@@ -1,13 +1,11 @@
 ﻿using System.Runtime.InteropServices;
 namespace EleCho.PlatformInvoke.Windows;
 
-[StructLayout(LayoutKind.Explicit)]
+[StructLayout(LayoutKind.Explicit, CharSet = CharSet.Ansi)]
 public unsafe struct DeviceModeA
 {
     [FieldOffset(0)]
     fixed byte dmDeviceName[Constants.DeviceNameSize];
-    [FieldOffset(0)]
-    PlaceholderByte32 _placeholder_dmDeviceName;
 
     [FieldOffset(Constants.DeviceNameSize)]
     ushort dmSpecVersion;
@@ -79,8 +77,6 @@ public unsafe struct DeviceModeA
 
     [FieldOffset(Constants.DeviceNameSize + 38)]
     fixed byte dmFormName[Constants.FormNameSize];
-    [FieldOffset(Constants.DeviceNameSize + 38)]
-    PlaceholderByte32 _placeholder_dmFormName;
 
     [FieldOffset(Constants.DeviceNameSize + Constants.FormNameSize + 38)]
     ushort dmLogPixels;

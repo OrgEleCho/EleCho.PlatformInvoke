@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices;
+﻿using System.Runtime.CompilerServices;
+using System;
+using System.Runtime.InteropServices;
 namespace EleCho.PlatformInvoke.Windows;
 
 #region Delegates
@@ -232,13 +234,11 @@ public struct Message : IEquatable<Message>
 #endregion
 
 #region DeviceMode
-[StructLayout(LayoutKind.Explicit)]
+[StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
 public unsafe struct DeviceMode
 {
     [FieldOffset(0)]
     fixed char dmDeviceName[Constants.DeviceNameSize];
-    [FieldOffset(0)]
-    PlaceholderByte64 _placeholder_dmDeviceName;
 
     [FieldOffset(Constants.DeviceNameSize * 2)]
     ushort dmSpecVersion;
@@ -311,8 +311,6 @@ public unsafe struct DeviceMode
 
     [FieldOffset(Constants.DeviceNameSize * 2 + 38)]
     fixed char dmFormName[Constants.FormNameSize];
-    [FieldOffset(Constants.DeviceNameSize * 2 + 38)]
-    PlaceholderByte64 _placeholder_dmFormName;
 
     [FieldOffset(Constants.DeviceNameSize * 2 + Constants.FormNameSize * 2 + 38)]
     ushort dmLogPixels;
@@ -561,5 +559,76 @@ public struct ChangeFilterStruct
 
     public uint Size { get => cbSize; set => cbSize = value; }
     public MessageFilterInfo ExtStatus { get => _ExtStatus; set => _ExtStatus = value; }
+}
+#endregion
+
+#region VideoParameters
+[StructLayout(LayoutKind.Sequential)]
+public unsafe struct VideoParameters
+{
+    Guid guid;                         // GUID for this structure
+    uint dwOffset;                     // leave it 0 for now.
+    VideoParametersCommand dwCommand;                    // VP_COMMAND_*            SET or GET
+    VideoParametersFlag dwFlags;                      // bitfield, defined below SET or GET
+    VideoParametersMode dwMode;                       // bitfield, defined below SET or GET
+    VideoParametersTvStandard dwTVStandard;                 // bitfield, defined below SET or GET
+    VideoParametersMode dwAvailableModes;             // bitfield, defined below GET
+    VideoParametersTvStandard dwAvailableTVStandard;        // bitfield, defined below GET
+    uint dwFlickerFilter;              // value                   SET or GET
+    uint dwOverScanX;                  // value                   SET or GET
+    uint dwOverScanY;                  //                         SET or GET
+    uint dwMaxUnscaledX;               // value                   SET or GET
+    uint dwMaxUnscaledY;               //                         SET or GET
+    uint dwPositionX;                  // value                   SET or GET
+    uint dwPositionY;                  //                         SET or GET
+    uint dwBrightness;                 // value                   SET or GET
+    uint dwContrast;                   // value                   SET or GET
+    VideoParametersCopyProtectionType dwCPType;                     // copy protection type    SET or GET
+    VideoParametersCopyProtectionCommand dwCPCommand;                  // VP_CP_CMD_
+    VideoParametersTvStandard dwCPStandard;                 // what TV standards CP is available on. GET
+    uint dwCPKey;
+    uint bCP_APSTriggerBits;           // (a dword for alignment) SET(bits 0 and 1 valid).
+    
+    fixed byte bOEMCopyProtection[256];      // oem specific copy protection data SET or GET
+
+    public Guid Guid { get => guid; set => guid = value; }
+    public uint Offset { get => dwOffset; set => dwOffset = value; }
+    public VideoParametersCommand Command { get => dwCommand; set => dwCommand = value; }
+    public VideoParametersFlag Flags { get => dwFlags; set => dwFlags = value; }
+    public VideoParametersMode Mode { get => dwMode; set => dwMode = value; }
+    public VideoParametersTvStandard TvStandard { get => dwTVStandard; set => dwTVStandard = value; }
+    public VideoParametersMode AvailableModes { get => dwAvailableModes; set => dwAvailableModes = value; }
+    public VideoParametersTvStandard AvailableTvStandard { get => dwAvailableTVStandard; set => dwAvailableTVStandard = value; }
+    public uint FlickerFilter { get => dwFlickerFilter; set => dwFlickerFilter = value; }
+    public uint OverScanX { get => dwOverScanX; set => dwOverScanX = value; }
+    public uint OverScanY { get => dwOverScanY; set => dwOverScanY = value; }
+    public uint MaxUnscaledX { get => dwMaxUnscaledX; set => dwMaxUnscaledX = value; }
+    public uint MaxUnscaledY { get => dwMaxUnscaledY; set => dwMaxUnscaledY = value; }
+    public uint PositionX { get => dwPositionX; set => dwPositionX = value; }
+    public uint PositionY { get => dwPositionY; set => dwPositionY = value; }
+    public uint Brightness { get => dwBrightness; set => dwBrightness = value; }
+    public uint Contrast { get => dwContrast; set => dwContrast = value; }
+    public VideoParametersCopyProtectionType CopyProtectionType { get => dwCPType; set => dwCPType = value; }
+    public VideoParametersCopyProtectionCommand CopyProtectionCommand { get => dwCPCommand; set => dwCPCommand = value; }
+    public VideoParametersTvStandard CopyProtectionStandard { get => dwCPStandard; set => dwCPStandard = value; }
+    public uint CopyProtectionKey { get => dwCPKey; set => dwCPKey = value; }
+    public uint ApsTriggerBits { get => bCP_APSTriggerBits; set => bCP_APSTriggerBits = value; }
+    public Span<byte> OemCopyProtection
+    {
+        get
+        {
+            fixed (byte* ptr = bOEMCopyProtection)
+            {
+                return new Span<byte>(ptr, 256);
+            }
+        }
+    }
+}
+
+public struct Accelerator
+{
+    byte     fVirt;               /* Also called the flags field */
+    ushort   key;
+    ushort   cmd;
 }
 #endregion

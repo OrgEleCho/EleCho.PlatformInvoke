@@ -14,9 +14,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53CD70C0-7D7C-42C5-A90B-45B74A7C932D}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
+		work_progress\user32.xlsx = work_progress\user32.xlsx
 	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "progress", "progress", "{DA553ECB-0EBA-41F6-9284-A491311CA610}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,9 +78,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{DA553ECB-0EBA-41F6-9284-A491311CA610} = {53CD70C0-7D7C-42C5-A90B-45B74A7C932D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5AD72911-C620-4BB0-ADFE-6DCB96F6174A}

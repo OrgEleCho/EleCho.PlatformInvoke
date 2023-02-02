@@ -9,15 +9,14 @@
 
 using namespace std;
 
-struct StringWrapper
-{
-    wchar_t str[32];
-};
-
-
 extern "C" __declspec(dllexport) void char_next_w(char* str)
 {
     printf("%s\n", str);
+}
+
+extern "C" __declspec(dllexport) void TestString(wchar_t* str)
+{
+    wprintf(L"%s\n", str);
 }
 
 extern "C" __declspec(dllexport) void Check_DEVMODE(DEVMODEW * ptr)
@@ -27,34 +26,44 @@ extern "C" __declspec(dllexport) void Check_DEVMODE(DEVMODEW * ptr)
     printf("Reserved2: %d", ptr->dmReserved2);
 }
 
-extern "C" __declspec(dllexport) void CheckStringWrapper(StringWrapper * ptr)
+extern "C" __declspec(dllexport) void TestGuid(GUID* ptr)
 {
     printf("Pointer value: %p\n", ptr);
-    printf("Str Pointer value: %p\n", ptr->str);
-    wprintf(L"%s\n", ptr->str);
+    printf("Data1: %d\n", ptr->Data1);
+    printf("Data2: %d\n", ptr->Data2);
+    printf("Data3: %d\n", ptr->Data3);
+    printf("Data4: %d\n", ptr->Data4);
 }
 
+struct SomeIntegers
+{
+    union {
+        int A;
+        struct {
+            short Higer;
+            short Lower;
+        };
+    };
+};
 
+struct StringWrapper
+{
+    wchar_t* StrPtr;
+    int Length;
+};
+
+extern "C" __declspec(dllexport) void print(StringWrapper * str)
+{
+    for (int i = 0; i < str->Length; i++) {
+        putwchar(str->StrPtr[i]);
+    }
+
+    putwchar(L'\n');
+}
 
 
 void test()
 {
-    ChildWindowFromPoint;
-    ChildWindowFromPointEx;
-    CWP_ALL;
-    ClientToScreen;
-    ClipCursor;
-    CloseClipboard;
-    CloseDesktop;
-    DEVMODEW;
-    DMDO_180;
-    DMDFO_CENTER;
-    MSG;
-    DMDUP_SIMPLEX;
-    DMTT_BITMAP;
-    DM_INTERLACED;
-    DMNUP_SYSTEM;
-    ChangeDisplaySettingsW;
-
-    DISP_CHANGE_SUCCESSFUL;
+    CopyIcon;
+    CopyImage;
 }
