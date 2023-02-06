@@ -10,39 +10,16 @@ internal unsafe class Program
 {
     public const string TestDll = "C:\\Users\\slime\\source\\repos\\PlatformInvoke\\x64\\Debug\\ExportTestingViewer.dll";
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct SomeIntegers
-    {
-        public byte A;              // 1 byte
-                                    // 3 byte
-        public TwoIntegers B;       // 8 bytes
-        public byte C;              // 1 byte
-                                    // 3 bytes
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    struct TwoIntegers
-    {
-        int A;    // 4 bytes
-        byte B;   // 1 byte
-                  // 3 bytes
-    }
-
-    public struct QWQ
-    {
-        byte A;
-        Int128 B;
-    }
-    readonly struct Temp
-    {
-        readonly int a,b;
-    }
+    [DllImport(TestDll, EntryPoint = "plus1")]
+    public static extern nint Plus1(ref int num);
 
     private static void Main(string[] args)
     {
-        //foreach (var attr in typeof(MyInt128).GetCustomAttributes(true))
-        //    Console.WriteLine(attr.GetType());
-        Console.WriteLine(sizeof(SomeIntegers));
+        int q = 114513;
+        var p = Plus1(ref q);
+        ref int n = ref Unsafe.AsRef<int>((void*)p);
+        Console.WriteLine(n);
+        Console.WriteLine(q);
     }
 
 }

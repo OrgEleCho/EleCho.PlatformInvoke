@@ -777,3 +777,35 @@ public enum AcceleratorModifier : byte
     Control      = 0x08,
     Alt          = 0x10,
 }
+
+public enum ImageType : uint
+{
+    Bitmap = 0,
+    Icon   = 1,
+    Cursor = 2,
+    EnhMetafile = 3,
+}
+
+// TODO: what's the name
+public enum LR : uint
+{
+    DefaultColor     = 0x00000000,
+    MonoChrome       = 0x00000001,
+    Color            = 0x00000002,
+    CopyReturnOrg    = 0x00000004,
+    CopyDeleteOrg    = 0x00000008,
+    LoadFromFile     = 0x00000010,
+    LoadTransparent  = 0x00000020,
+    DefaultSize      = 0x00000040,
+    VgaColor         = 0x00000080,
+    LoadMap3DColors  = 0x00001000,
+    CreateDibsection = 0x00002000,
+    CopyFromResource = 0x00004000,
+    Shared           = 0x00008000,
+}
+
+public enum DesktopControlFlags : uint
+{
+    None                     = 0x0000,
+    AllowOtherAccountHook    = 0x0001,
+}

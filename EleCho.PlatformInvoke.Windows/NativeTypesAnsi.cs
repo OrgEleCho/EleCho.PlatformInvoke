@@ -1,6 +1,7 @@
 ﻿using System.Runtime.InteropServices;
 namespace EleCho.PlatformInvoke.Windows;
 
+[NativeType("DEVMODEA")]
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Ansi)]
 public unsafe struct DeviceModeA
 {
