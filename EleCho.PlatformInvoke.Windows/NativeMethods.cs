@@ -394,6 +394,11 @@ public unsafe class NativeMethods
     public extern static nint CreateAcceleratorTable([In] ref Accelerator accel, [In] int cAccel);
     #endregion
 
+    #region ShowWindow
+    [DllImport("user32.dll", EntryPoint = "ShowWindow",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool ShowWindow([In, NativeType("HWND")] nint hWnd, [In] ShowWindowFlag nCmdShow);
+
     #region CreateCaret
     [DllImport("user32.dll", EntryPoint = "CreateCaret",
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
@@ -405,6 +410,7 @@ public unsafe class NativeMethods
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
     [return: NativeType("HCURSOR")]
     public extern static nint CreateCursor([In, Optional] nint hInst, [In] int xHotSpot, [In] int yHotSpot, [In] int width, [In] int height, [In] nint pvANDPlane, [In] nint pvXORPlane);
+
     #endregion
 
     #region CreateDesktop
