@@ -367,7 +367,7 @@ public unsafe class NativeMethods
     [return: NativeType("HICON")]
     public extern static nint CopyIcon([In, NativeType("HICON")] nint hIcon);
     #endregion
-    
+
     #region CopyImage
     [DllImport("user32.dll", EntryPoint = "CopyImage",
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
@@ -398,6 +398,7 @@ public unsafe class NativeMethods
     [DllImport("user32.dll", EntryPoint = "ShowWindow",
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
     public extern static bool ShowWindow([In, NativeType("HWND")] nint hWnd, [In] ShowWindowFlag nCmdShow);
+    #endregion
 
     #region CreateCaret
     [DllImport("user32.dll", EntryPoint = "CreateCaret",
@@ -435,7 +436,7 @@ public unsafe class NativeMethods
     #region CreateDialogIndirectParam
     [DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParamW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    public extern static nint CreateDialogIndirectParam([In, Optional, NativeType("HINSTANCE")] nint hInstance, [In] ref DialogTemplate template, [In,Optional, NativeType("HWND")] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In, NativeType("LPARAM")] nint dwInitParam);
+    public extern static nint CreateDialogIndirectParam([In, Optional, NativeType("HINSTANCE")] nint hInstance, [In] ref DialogTemplate template, [In, Optional, NativeType("HWND")] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In, NativeType("LPARAM")] nint dwInitParam);
     #endregion
 
     #region CreateDialogParam
