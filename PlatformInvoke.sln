@@ -13,6 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EleCho.PlatformInvoke.Windo
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{53CD70C0-7D7C-42C5-A90B-45B74A7C932D}"
 	ProjectSection(SolutionItems) = preProject
+		pinvoke.snippet = pinvoke.snippet
 		readme.md = readme.md
 		work_progress\user32.xlsx = work_progress\user32.xlsx
 	EndProjectSection

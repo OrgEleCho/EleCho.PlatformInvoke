@@ -5,12 +5,17 @@ namespace EleCho.PlatformInvoke.Windows;
 
 #region Delegates
 
+[NativeType("WNDPROC")]
 [return: NativeType("LRESULT")]
 public delegate nint WndProc([NativeType("HWND")] nint hwnd, uint msg, [NativeType("WPARAM")] nuint wParam, [NativeType("LPARAM")] nint lParam);
 
+[NativeType("DLGPROC")]
+[return: NativeType("INT_PTR")]
+public delegate nint DlgProc([NativeType("HWND")] nint hwnd, uint msg, [NativeType("WPARAM")] nuint wParam, [NativeType("LPARAM")] nint lParam);
 #endregion
 
 #region Point
+[NativeType("POINT")]
 [StructLayout(LayoutKind.Sequential)]
 public struct Point : IEquatable<Point>
 {
@@ -36,6 +41,7 @@ public struct Point : IEquatable<Point>
 #endregion
 
 #region Size
+[NativeType("SIZE")]
 [StructLayout(LayoutKind.Sequential)]
 public struct Size : IEquatable<Size>
 {
@@ -61,6 +67,7 @@ public struct Size : IEquatable<Size>
 #endregion
 
 #region Rect
+[NativeType("RECT")]
 [StructLayout(LayoutKind.Sequential)]
 public struct Rect : IEquatable<Rect>
 {
@@ -95,6 +102,7 @@ public struct Rect : IEquatable<Rect>
 #endregion
 
 #region PaintStruct
+[NativeType("PAINTSTRUCT")]
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct PaintStruct : IEquatable<PaintStruct>
 {
@@ -132,6 +140,7 @@ public unsafe struct PaintStruct : IEquatable<PaintStruct>
 #endregion
 
 #region Luid
+[NativeType("LUID")]
 [StructLayout(LayoutKind.Sequential)]
 public struct Luid : IEquatable<Luid>
 {
@@ -157,6 +166,7 @@ public struct Luid : IEquatable<Luid>
 #endregion
 
 #region BsmInfo
+[NativeType("BSMINFO")]
 [StructLayout(LayoutKind.Sequential)]
 public struct BsmInfo : IEquatable<BsmInfo>
 {
@@ -234,6 +244,7 @@ public struct Message : IEquatable<Message>
 #endregion
 
 #region DeviceMode
+[NativeType("DEVMODEW")]
 [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Unicode)]
 public unsafe struct DeviceMode
 {
@@ -533,6 +544,7 @@ public unsafe struct DeviceMode
 #endregion
 
 #region ChangeFilterStruct
+[NativeType("CHANGEFILTERSTRUCT")]
 [StructLayout(LayoutKind.Sequential)]
 public struct ChangeFilterStruct
 {
@@ -563,6 +575,7 @@ public struct ChangeFilterStruct
 #endregion
 
 #region VideoParameters
+[NativeType("VIDEOPARAMETERS")]
 [StructLayout(LayoutKind.Sequential)]
 public unsafe struct VideoParameters
 {
@@ -625,10 +638,56 @@ public unsafe struct VideoParameters
     }
 }
 
+[NativeType("ACCEL")]
 public struct Accelerator
 {
     byte     fVirt;               /* Also called the flags field */
     ushort   key;
     ushort   cmd;
+
+    public Accelerator(byte fVirt, ushort key, ushort cmd) : this()
+    {
+        this.fVirt = fVirt;
+        this.key = key;
+        this.cmd = cmd;
+    }
+
+    public byte FVirt { get => fVirt; set => fVirt = value; }
+    public ushort Key { get => key; set => key = value; }
+    public ushort Cmd { get => cmd; set => cmd = value; }
+}
+#endregion
+
+#region DialogTemplate
+[NativeType("DLGTEMPLATE")]
+[StructLayout(LayoutKind.Sequential)]
+public struct DialogTemplate
+{
+    uint style;
+    uint dwExtendedStyle;
+    ushort cdit;
+    short x;
+    short y;
+    short cx;
+    short cy;
+
+    public DialogTemplate(uint style, uint extendedStyle, ushort cdit, short x, short y, short cx, short cy)
+    {
+        this.style = style;
+        this.dwExtendedStyle = extendedStyle;
+        this.cdit = cdit;
+        this.x = x;
+        this.y = y;
+        this.cx = cx;
+        this.cy = cy;
+    }
+
+    public uint Style { get => style; set => style = value; }
+    public uint ExtendedStyle { get => dwExtendedStyle; set => dwExtendedStyle = value; }
+    public ushort Cdit { get => cdit; set => cdit = value; }
+    public short X { get => x; set => x = value; }
+    public short Y { get => y; set => y = value; }
+    public short CX { get => cx; set => cx = value; }
+    public short CY { get => cy; set => cy = value; }
 }
 #endregion

@@ -358,7 +358,7 @@ public unsafe class NativeMethods
     #region CopyAcceleratorTable
     [DllImport("user32.dll", EntryPoint = "CopyAcceleratorTableW",
                ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
-    public extern static int CopyAcceleratorTableW([In, NativeType("HACCEL")] nint hAccelSrc, [Out, Optional] Accelerator[]? accelDst, [In] int cAccelEntries);
+    public extern static int CopyAcceleratorTable([In, NativeType("HACCEL")] nint hAccelSrc, [Out, Optional] Accelerator[]? accelDst, [In] int cAccelEntries);
     #endregion
 
     #region CopyIcon
@@ -367,18 +367,76 @@ public unsafe class NativeMethods
     [return: NativeType("HICON")]
     public extern static nint CopyIcon([In, NativeType("HICON")] nint hIcon);
     #endregion
+    
+    #region CopyImage
+    [DllImport("user32.dll", EntryPoint = "CopyImage",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    [return: NativeType("HANDLE")]
+    public extern static nint CopyImage([In, NativeType("HANDLE")] nint h, [In] ImageType type, [In] int cx, [In] int cy, [In] LR flags);
+    #endregion
+
+    #region CopyRect
+    [DllImport("user32.dll", EntryPoint = "CopyRect",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CopyRect([Out] out Rect rcDst, [In] ref Rect rcSrc);
+    #endregion
+
+    #region CountClipboardFormats
+    [DllImport("user32.dll", EntryPoint = "CountClipboardFormats",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static int CountClipboardFormats();
+    #endregion
+
+    #region CreateAcceleratorTable
+    [DllImport("user32.dll", EntryPoint = "CreateAcceleratorTableW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    [return: NativeType("HACCEL")]
+    public extern static nint CreateAcceleratorTable([In] ref Accelerator accel, [In] int cAccel);
+    #endregion
 
     #region ShowWindow
     [DllImport("user32.dll", EntryPoint = "ShowWindow",
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
     public extern static bool ShowWindow([In, NativeType("HWND")] nint hWnd, [In] ShowWindowFlag nCmdShow);
+
+    #region CreateCaret
+    [DllImport("user32.dll", EntryPoint = "CreateCaret",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    public extern static bool CreateCaret([In, NativeType("HWND")] nint hWnd, [In, Optional, NativeType("HBITMAP")] nint hBitmap, [In] int width, [In] int height);
     #endregion
 
+    #region CreateCursor
+    [DllImport("user32.dll", EntryPoint = "CreateCursor",
+               ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
+    [return: NativeType("HCURSOR")]
+    public extern static nint CreateCursor([In, Optional] nint hInst, [In] int xHotSpot, [In] int yHotSpot, [In] int width, [In] int height, [In] nint pvANDPlane, [In] nint pvXORPlane);
+
+    #endregion
+
+    #region CreateDesktop
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDesktop([In] string desktop, [Reserved] string device, [Reserved] ref DeviceMode deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa);
+
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDesktop([In] char* desktop, [Reserved] char* device, [Reserved] ref DeviceMode deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa);
 
 
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopExW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDesktopEx([In] string desktop, [Reserved] string device, [Reserved] ref DeviceMode deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa, [In] uint heapSize, [Reserved] nint pvoid);
 
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopExW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDesktopEx([In] char* desktop, [Reserved] char* device, [Reserved] ref DeviceMode deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa, [In] uint heapSize, [Reserved] nint pvoid);
+    #endregion
 
-
+    #region CreateDialogIndirectParam
+    [DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParamW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDialogIndirectParam([In, Optional] nint hInstance, [In] ref DialogTemplate template, [In,Optional] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In] nint dwInitParam);
+    #endregion
 
 
 

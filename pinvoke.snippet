@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>pinvoke</Title>
+			<Shortcut>pinvoke</Shortcut>
+			<Description>Code snippet for DllImport P/Invoke method</Description>
+			<Author>SlimeNull</Author>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>dllName</ID>
+					<ToolTip>DLL Name</ToolTip>
+					<Default>Kernel32.dll</Default>
+				</Literal>
+                <Literal>
+					<ID>entryPoint</ID>
+					<ToolTip>Entry Point</ToolTip>
+					<Default>GetCurrentProcessId</Default>
+				</Literal>
+                <Literal>
+					<ID>exactSpelling</ID>
+					<ToolTip>Controls whether the CharSet field causes the common language runtime to search an unmanaged DLL for entry-point names other than the one specified.</ToolTip>
+					<Default>false</Default>
+				</Literal>
+                <Literal>
+					<ID>charset</ID>
+					<ToolTip>Indicates how to marshal string parameters to the method and controls name mangling.</ToolTip>
+					<Default>None</Default>
+				</Literal>
+                <Literal>
+					<ID>setLastError</ID>
+					<ToolTip>Indicates whether the callee sets an error (SetLastError on Windows or errno on other platforms) before returning from the attributed method.</ToolTip>
+					<Default>false</Default>
+				</Literal>
+                <Literal>
+					<ID>accessModifier</ID>
+					<ToolTip>Access modifier.</ToolTip>
+					<Default>private</Default>
+				</Literal>
+                <Literal>
+					<ID>retType</ID>
+					<ToolTip>Return value type.</ToolTip>
+					<Default>nint</Default>
+				</Literal>
+                <Literal>
+					<ID>parameters</ID>
+					<ToolTip>Parameters.</ToolTip>
+					<Default></Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp">
+                <![CDATA[
+                [DllImport("$dllName$", EntryPoint = "$entryPoint$",
+                           ExactSpelling = $exactSpelling$, CharSet = CharSet.$charset$, SetLastError = $setLastError$)]
+                $accessModifier$ extern static $retType$ $entryPoint$($parameters$);
+                ]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

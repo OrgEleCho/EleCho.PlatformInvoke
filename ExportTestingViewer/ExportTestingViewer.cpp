@@ -9,61 +9,43 @@
 
 using namespace std;
 
-extern "C" __declspec(dllexport) void char_next_w(char* str)
+struct MyStruct
 {
-    printf("%s\n", str);
-}
-
-extern "C" __declspec(dllexport) void TestString(wchar_t* str)
-{
-    wprintf(L"%s\n", str);
-}
-
-extern "C" __declspec(dllexport) void Check_DEVMODE(DEVMODEW * ptr)
-{
-    wprintf(L"DeviceName: %s", ptr->dmDeviceName);
-    wprintf(L"FormName: %s", ptr->dmFormName);
-    printf("Reserved2: %d", ptr->dmReserved2);
-}
-
-extern "C" __declspec(dllexport) void TestGuid(GUID* ptr)
-{
-    printf("Pointer value: %p\n", ptr);
-    printf("Data1: %d\n", ptr->Data1);
-    printf("Data2: %d\n", ptr->Data2);
-    printf("Data3: %d\n", ptr->Data3);
-    printf("Data4: %d\n", ptr->Data4);
-}
-
-struct SomeIntegers
-{
-    union {
-        int A;
-        struct {
-            short Higer;
-            short Lower;
-        };
-    };
+    char name[32];
+    char description[128];
+    int qwq;
 };
 
-struct StringWrapper
+extern "C" __declspec(dllexport) void print_info(MyStruct* pMyStruct)
 {
-    wchar_t* StrPtr;
-    int Length;
-};
+    printf("%p\n", pMyStruct);
+    printf("%p\n", pMyStruct->name);
+    printf("%p\n", &pMyStruct);
+    printf("%p\n", &(pMyStruct->name));
 
-extern "C" __declspec(dllexport) void print(StringWrapper * str)
+    printf("%s\n", pMyStruct->name);
+    printf("%s\n", pMyStruct->description);
+
+    pMyStruct->description[0] = 'X';
+    pMyStruct->qwq += 514;
+}
+
+extern "C" __declspec(dllexport) int* plus1(int* pnum)
 {
-    for (int i = 0; i < str->Length; i++) {
-        putwchar(str->StrPtr[i]);
-    }
-
-    putwchar(L'\n');
+    (*pnum)++;
+    return pnum;
 }
 
 
 void test()
 {
-    CopyIcon;
-    CopyImage;
+    CreateCaret;
+    CreateCursor;
+    CreateDesktopA;
+    DF_ALLOWOTHERACCOUNTHOOK;
+    CreateDesktopW;
+    CreateDesktopExW;
+    CreateDialogIndirectParamA;
+    CreateDialogParamA;
+    LPARAM; WPARAM;
 }

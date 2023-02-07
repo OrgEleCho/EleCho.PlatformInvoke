@@ -8,41 +8,38 @@ using System.Text;
 
 internal unsafe class Program
 {
+    public record struct MyStruct
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string Name;
+        
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+        public string Description;
+
+        public int Qwq;
+    }
+
     public const string TestDll = "C:\\Users\\slime\\source\\repos\\PlatformInvoke\\x64\\Debug\\ExportTestingViewer.dll";
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct SomeIntegers
-    {
-        public byte A;              // 1 byte
-                                    // 3 byte
-        public TwoIntegers B;       // 8 bytes
-        public byte C;              // 1 byte
-                                    // 3 bytes
-    }
+    [DllImport(TestDll, EntryPoint = "plus1")]
+    public static extern nint Plus1(ref int num);
 
-    [StructLayout(LayoutKind.Sequential)]
-    struct TwoIntegers
-    {
-        int A;    // 4 bytes
-        byte B;   // 1 byte
-                  // 3 bytes
-    }
+    [DllImport(TestDll, EntryPoint = "print_info")]
+    public static extern void PrintInfo(ref MyStruct myStruct);
 
-    public struct QWQ
-    {
-        byte A;
-        Int128 B;
-    }
-    readonly struct Temp
-    {
-        readonly int a,b;
-    }
 
     private static void Main(string[] args)
     {
-        //foreach (var attr in typeof(MyInt128).GetCustomAttributes(true))
-        //    Console.WriteLine(attr.GetType());
-        Console.WriteLine(sizeof(SomeIntegers));
+        MyStruct myStruct = new MyStruct()
+        {
+            Name = "Hello world, this is a very large string, the length is even greater than 32, so it will be truncated",
+            Description = "QWQ",
+            Qwq = 114000,
+        };
+
+        Console.WriteLine(myStruct);
+        PrintInfo(ref myStruct);
+        Console.WriteLine(myStruct);
     }
 
 }

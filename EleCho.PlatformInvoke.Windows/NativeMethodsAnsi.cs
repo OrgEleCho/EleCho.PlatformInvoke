@@ -141,4 +141,37 @@ public unsafe class NativeMethodsAnsi
     public extern static int CopyAcceleratorTable([In, NativeType("HACCEL")] nint hAccelSrc, [Out, Optional] Accelerator[]? accelDst, [In] int cAccelEntries);
     #endregion
 
+    #region CreateAcceleratorTable
+    [DllImport("user32.dll", EntryPoint = "CopyAcceleratorTableA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CopyAcceleratorTableA([In] ref Accelerator accel, [In] int cAccel);
+    #endregion
+
+    #region CreateDesktop
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDesktop([In] string desktop, [Reserved] string device, [Reserved] ref DeviceModeA deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa);
+
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDesktop([In] byte* desktop, [Reserved] byte* device, [Reserved] ref DeviceModeA deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa);
+
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopExA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDesktopEx([In] string desktop, [Reserved] string device, [Reserved] ref DeviceModeA deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa, [In] uint heapSize, [Reserved] nint pvoid);
+
+    [DllImport("user32.dll", EntryPoint = "CreateDesktopExA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDesktopEx([In] byte* desktop, [Reserved] byte* device, [Reserved] ref DeviceModeA deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa, [In] uint heapSize, [Reserved] nint pvoid);
+    #endregion
+    
+    #region CreateDialogIndirectParam
+    [DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParamA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDialogIndirectParam([In, Optional] nint hInstance, [In] ref DialogTemplate template, [In, Optional] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In] nint dwInitParam);
+    #endregion
+
+
+
+
 }
