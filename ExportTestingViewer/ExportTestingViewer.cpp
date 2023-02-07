@@ -49,4 +49,5 @@ void test()
     CreateDialogParamA;
     CreateDialogParamA;
     LPARAM; WPARAM;
+    ShowWindow;
 }

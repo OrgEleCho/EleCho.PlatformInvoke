@@ -397,7 +397,7 @@ public unsafe class NativeMethods
     #region ShowWindow
     [DllImport("user32.dll", EntryPoint = "ShowWindow",
                ExactSpelling = true, CharSet = CharSet.None, SetLastError = false)]
-    public extern static bool ShowWindow([In, NativeType("HWND")] nint hWnd, [In] ShowWindowFlag nCmdShow);
+    public extern static bool ShowWindow([In, NativeType("HWND")] nint hWnd, [In] ShowWindowCommand nCmdShow);
     #endregion
 
     #region CreateCaret

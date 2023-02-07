@@ -778,7 +778,7 @@ public enum AcceleratorModifier : byte
     Alt          = 0x10,
 }
 
-public enum ShowWindowFlag: int {
+public enum ShowWindowCommand: int {
     Hide = 0,
     ShowNormal = 1,
     Normal = 1,
