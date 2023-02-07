@@ -168,9 +168,18 @@ public unsafe class NativeMethodsAnsi
     #region CreateDialogIndirectParam
     [DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParamA",
                ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
-    public extern static nint CreateDialogIndirectParam([In, Optional] nint hInstance, [In] ref DialogTemplate template, [In, Optional] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In] nint dwInitParam);
+    public extern static nint CreateDialogIndirectParam([In, Optional, NativeType("HINSTANCE")] nint hInstance, [In] ref DialogTemplate template, [In, Optional, NativeType("HWND")] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In, NativeType("LPARAM")] nint dwInitParam);
     #endregion
+    
+    #region CreateDialogParam
+    [DllImport("user32.dll", EntryPoint = "CreateDialogParamA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDialogParam([In, Optional, NativeType("HINSTANCE")] nint hInstance, [In] string templateName, [In, Optional, NativeType("HWND")] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In, NativeType("LPARAM")] nint dwInitParam);
 
+    [DllImport("user32.dll", EntryPoint = "CreateDialogParamA",
+               ExactSpelling = true, CharSet = CharSet.Ansi, SetLastError = false)]
+    public extern static nint CreateDialogParam([In, Optional, NativeType("HINSTANCE")] nint hInstance, [In] byte* templateName, [In, Optional, NativeType("HWND")] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In, NativeType("LPARAM")] nint dwInitParam);
+    #endregion
 
 
 

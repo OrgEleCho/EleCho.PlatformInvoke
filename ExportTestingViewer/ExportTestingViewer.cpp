@@ -47,5 +47,6 @@ void test()
     CreateDesktopExW;
     CreateDialogIndirectParamA;
     CreateDialogParamA;
+    CreateDialogParamA;
     LPARAM; WPARAM;
 }
