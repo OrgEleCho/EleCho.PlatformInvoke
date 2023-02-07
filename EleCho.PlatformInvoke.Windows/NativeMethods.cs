@@ -426,6 +426,11 @@ public unsafe class NativeMethods
     public extern static nint CreateDesktopEx([In] char* desktop, [Reserved] char* device, [Reserved] ref DeviceMode deviceMode, [In] DesktopControlFlags flags, [In, NativeType("ACCESS_MASK")] uint desiredAccess, [In, Optional, NativeType("LPSECURITY_ATTRIBUTES")] nint sa, [In] uint heapSize, [Reserved] nint pvoid);
     #endregion
 
+    #region CreateDialogIndirectParam
+    [DllImport("user32.dll", EntryPoint = "CreateDialogIndirectParamW",
+               ExactSpelling = true, CharSet = CharSet.Unicode, SetLastError = false)]
+    public extern static nint CreateDialogIndirectParam([In, Optional] nint hInstance, [In] ref DialogTemplate template, [In,Optional] nint hWndParent, [In, Optional] DlgProc dialogFunc, [In] nint dwInitParam);
+    #endregion
 
 
 

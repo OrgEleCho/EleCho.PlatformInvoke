@@ -687,7 +687,7 @@ public struct DialogTemplate
     public ushort Cdit { get => cdit; set => cdit = value; }
     public short X { get => x; set => x = value; }
     public short Y { get => y; set => y = value; }
-    public short Cx { get => cx; set => cx = value; }
-    public short Cy { get => cy; set => cy = value; }
+    public short CX { get => cx; set => cx = value; }
+    public short CY { get => cy; set => cy = value; }
 }
 #endregion

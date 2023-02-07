@@ -8,18 +8,38 @@ using System.Text;
 
 internal unsafe class Program
 {
+    public record struct MyStruct
+    {
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 32)]
+        public string Name;
+        
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
+        public string Description;
+
+        public int Qwq;
+    }
+
     public const string TestDll = "C:\\Users\\slime\\source\\repos\\PlatformInvoke\\x64\\Debug\\ExportTestingViewer.dll";
 
     [DllImport(TestDll, EntryPoint = "plus1")]
     public static extern nint Plus1(ref int num);
 
+    [DllImport(TestDll, EntryPoint = "print_info")]
+    public static extern void PrintInfo(ref MyStruct myStruct);
+
+
     private static void Main(string[] args)
     {
-        int q = 114513;
-        var p = Plus1(ref q);
-        ref int n = ref Unsafe.AsRef<int>((void*)p);
-        Console.WriteLine(n);
-        Console.WriteLine(q);
+        MyStruct myStruct = new MyStruct()
+        {
+            Name = "Hello world, this is a very large string, the length is even greater than 32, so it will be truncated",
+            Description = "QWQ",
+            Qwq = 114000,
+        };
+
+        Console.WriteLine(myStruct);
+        PrintInfo(ref myStruct);
+        Console.WriteLine(myStruct);
     }
 
 }
