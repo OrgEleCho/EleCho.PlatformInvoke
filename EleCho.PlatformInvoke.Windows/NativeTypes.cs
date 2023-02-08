@@ -717,7 +717,8 @@ public unsafe struct ImageDosHeader
     fixed ushort res2[10];
     ushort lfanew;
 
-    public ImageDosHeader(ushort magic, ushort cblp, ushort cp, ushort crlc, ushort cparhdr, ushort minalloc, ushort maxalloc, ushort ss, ushort sp, ushort csum, ushort ip, ushort cs, ushort lfarlc, ushort ovno, Span<ushort> res, ushort oemid, ushort oeminfo, Span<ushort> res2, ushort lfanew) {
+    public ImageDosHeader(ushort magic, ushort cblp, ushort cp, ushort crlc, ushort cparhdr, ushort minalloc, ushort maxalloc, ushort ss, ushort sp, ushort csum, ushort ip, ushort cs, ushort lfarlc, ushort ovno, Span<ushort> res, ushort oemid, ushort oeminfo, Span<ushort> res2, ushort lfanew)
+    {
         this.magic = magic;
         this.cblp = cblp;
         this.cp = cp;
@@ -744,7 +745,8 @@ public unsafe struct ImageDosHeader
         this.oeminfo = oeminfo;
 
         fixed (void* src = res2)
-        fixed (void* dest = this.res2) {
+        fixed (void* dest = this.res2)
+        {
             int len = Math.Min(res2.Length, 10);
             Buffer.MemoryCopy(src, dest, len, len);
         }
@@ -766,16 +768,20 @@ public unsafe struct ImageDosHeader
     public ushort CS { get => cs; set => cs = value; }
     public ushort FileAddressOfRelocationTable { get => lfarlc; set => lfarlc = value; }
     public ushort OverlayNumber { get => ovno; set => ovno = value; }
-    public unsafe Span<ushort> Reserved {
-        get {
-            fixed (void* p = res) {
+    public unsafe Span<ushort> Reserved
+    {
+        get
+        {
+            fixed (void* p = res)
+            {
                 return new Span<ushort>(p, 4);
             }
         }
     }
     public ushort OemIdentifier { get => oemid; set => oemid = value; }
     public ushort OemInformation { get => oeminfo; set => oeminfo = value; }
-    public unsafe Span<ushort> Reserved2 {
+    public unsafe Span<ushort> Reserved2
+    {
         get 
         {
             fixed(void* p = res2) 
