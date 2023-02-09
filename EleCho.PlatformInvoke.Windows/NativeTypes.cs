@@ -793,3 +793,35 @@ public unsafe struct ImageDosHeader
     public ushort NewExeHeaderOffset { get => lfanew; set => lfanew = value; }
 }
 #endregion
+
+#region ImageDosHeader
+[NativeType("IMAGE_FILE_HEADER")]
+[StructLayout(LayoutKind.Sequential)]
+public struct ImageFileHeader {
+    ImageFileMachine machine;
+    ushort numberOfSections;
+    uint timeDateStamp;
+    uint pointerToSymbolTable;
+    uint numberOfSymbols;
+    ushort sizeOfOptionalHeader;
+    ImageFileCharacteristic characteristics;
+
+    public ImageFileHeader(ImageFileMachine machine, ushort numberOfSections, uint timeDateStamp, uint pointerToSymbolTable, uint numberOfSymbols, ushort sizeOfOptionalHeader, ImageFileCharacteristic characteristics) {
+        this.machine = machine;
+        this.numberOfSections = numberOfSections;
+        this.timeDateStamp = timeDateStamp;
+        this.pointerToSymbolTable = pointerToSymbolTable;
+        this.numberOfSymbols = numberOfSymbols;
+        this.sizeOfOptionalHeader = sizeOfOptionalHeader;
+        this.characteristics = characteristics;
+    }
+
+    public ImageFileMachine Machine { get => machine; set => machine = value; }
+    public ushort NumberOfSections { get => numberOfSections; set => numberOfSections = value; }
+    public uint TimeDateStamp { get => timeDateStamp; set => timeDateStamp = value; }
+    public uint PointerToSymbolTable { get => pointerToSymbolTable; set => pointerToSymbolTable = value; }
+    public uint NumberOfSymbols { get => numberOfSymbols; set => numberOfSymbols = value; }
+    public ushort SizeOfOptionalHeader { get => sizeOfOptionalHeader; set => sizeOfOptionalHeader = value; }
+    public ImageFileCharacteristic Characteristics { get => characteristics; set => characteristics = value; }
+}
+#endregion
