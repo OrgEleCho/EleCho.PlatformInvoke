@@ -794,7 +794,7 @@ public unsafe struct ImageDosHeader
 }
 #endregion
 
-#region ImageDosHeader
+#region ImageFileHeader
 [NativeType("IMAGE_FILE_HEADER")]
 [StructLayout(LayoutKind.Sequential)]
 public struct ImageFileHeader
