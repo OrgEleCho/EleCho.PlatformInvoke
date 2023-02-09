@@ -797,7 +797,8 @@ public unsafe struct ImageDosHeader
 #region ImageDosHeader
 [NativeType("IMAGE_FILE_HEADER")]
 [StructLayout(LayoutKind.Sequential)]
-public struct ImageFileHeader {
+public struct ImageFileHeader
+{
     ImageFileMachine machine;
     ushort numberOfSections;
     uint timeDateStamp;
@@ -806,7 +807,8 @@ public struct ImageFileHeader {
     ushort sizeOfOptionalHeader;
     ImageFileCharacteristic characteristics;
 
-    public ImageFileHeader(ImageFileMachine machine, ushort numberOfSections, uint timeDateStamp, uint pointerToSymbolTable, uint numberOfSymbols, ushort sizeOfOptionalHeader, ImageFileCharacteristic characteristics) {
+    public ImageFileHeader(ImageFileMachine machine, ushort numberOfSections, uint timeDateStamp, uint pointerToSymbolTable, uint numberOfSymbols, ushort sizeOfOptionalHeader, ImageFileCharacteristic characteristics)
+    {
         this.machine = machine;
         this.numberOfSections = numberOfSections;
         this.timeDateStamp = timeDateStamp;
