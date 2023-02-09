@@ -691,3 +691,105 @@ public struct DialogTemplate
     public short CY { get => cy; set => cy = value; }
 }
 #endregion
+
+#region ImageDosHeader
+[NativeType("IMAGE_DOS_HEADER")]
+[StructLayout(LayoutKind.Sequential)]
+public unsafe struct ImageDosHeader
+{
+    ushort magic;
+    ushort cblp;
+    ushort cp;
+    ushort crlc;
+    ushort cparhdr;
+    ushort minalloc;
+    ushort maxalloc;
+    ushort ss;
+    ushort sp;
+    ushort csum;
+    ushort ip;
+    ushort cs;
+    ushort lfarlc;
+    ushort ovno;
+    fixed ushort res[4];
+    ushort oemid;
+    ushort oeminfo;
+    fixed ushort res2[10];
+    ushort lfanew;
+
+    public ImageDosHeader(ushort magic, ushort cblp, ushort cp, ushort crlc, ushort cparhdr, ushort minalloc, ushort maxalloc, ushort ss, ushort sp, ushort csum, ushort ip, ushort cs, ushort lfarlc, ushort ovno, Span<ushort> res, ushort oemid, ushort oeminfo, Span<ushort> res2, ushort lfanew)
+    {
+        this.magic = magic;
+        this.cblp = cblp;
+        this.cp = cp;
+        this.crlc = crlc;
+        this.cparhdr = cparhdr;
+        this.minalloc = minalloc;
+        this.maxalloc = maxalloc;
+        this.ss = ss;
+        this.sp = sp;
+        this.csum = csum;
+        this.ip = ip;
+        this.cs = cs;
+        this.lfarlc = lfarlc;
+        this.ovno = ovno;
+
+        fixed(void* src = res) 
+        fixed(void* dest = this.res) 
+        {
+            int len = Math.Min(res.Length, 4);
+            Buffer.MemoryCopy(src, dest, len, len);
+        }
+
+        this.oemid = oemid;
+        this.oeminfo = oeminfo;
+
+        fixed (void* src = res2)
+        fixed (void* dest = this.res2)
+        {
+            int len = Math.Min(res2.Length, 10);
+            Buffer.MemoryCopy(src, dest, len, len);
+        }
+
+        this.lfanew = lfanew;
+    }
+
+    public ushort Magic { get => magic; set => magic = value; }
+    public ushort LastPage { get => cblp; set => cblp = value; }
+    public ushort PagesInFile { get => cp; set => cp = value; }
+    public ushort Relocations { get => crlc; set => crlc = value; }
+    public ushort ParagraphsHeaderCount { get => cparhdr; set => cparhdr = value; }
+    public ushort MinAllocation { get => minalloc; set => minalloc = value; }
+    public ushort MaxAllocation { get => maxalloc; set => maxalloc = value; }
+    public ushort SS { get => ss; set => ss = value; }
+    public ushort SP { get => sp; set => sp = value; }
+    public ushort Checksum { get => csum; set => csum = value; }
+    public ushort IP { get => ip; set => ip = value; }
+    public ushort CS { get => cs; set => cs = value; }
+    public ushort FileAddressOfRelocationTable { get => lfarlc; set => lfarlc = value; }
+    public ushort OverlayNumber { get => ovno; set => ovno = value; }
+    public unsafe Span<ushort> Reserved
+    {
+        get
+        {
+            fixed (void* p = res)
+            {
+                return new Span<ushort>(p, 4);
+            }
+        }
+    }
+    public ushort OemIdentifier { get => oemid; set => oemid = value; }
+    public ushort OemInformation { get => oeminfo; set => oeminfo = value; }
+    public unsafe Span<ushort> Reserved2
+    {
+        get 
+        {
+            fixed(void* p = res2) 
+            {
+                return new Span<ushort>(p, 10);
+            }
+        }
+    }
+    public ushort FileAddressOfNewExeHeader { get => lfanew; set => lfanew = value; }
+}
+#endregion
