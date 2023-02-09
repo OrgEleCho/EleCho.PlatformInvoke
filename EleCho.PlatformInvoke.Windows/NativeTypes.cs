@@ -755,10 +755,10 @@ public unsafe struct ImageDosHeader
     }
 
     public ushort Magic { get => magic; set => magic = value; }
-    public ushort LastPage { get => cblp; set => cblp = value; }
-    public ushort PagesInFile { get => cp; set => cp = value; }
-    public ushort Relocations { get => crlc; set => crlc = value; }
-    public ushort ParagraphsHeaderCount { get => cparhdr; set => cparhdr = value; }
+    public ushort LastPageSize { get => cblp; set => cblp = value; }
+    public ushort PageCount { get => cp; set => cp = value; }
+    public ushort RelocationCount { get => crlc; set => crlc = value; }
+    public ushort HeaderSize { get => cparhdr; set => cparhdr = value; }
     public ushort MinAllocation { get => minalloc; set => minalloc = value; }
     public ushort MaxAllocation { get => maxalloc; set => maxalloc = value; }
     public ushort SS { get => ss; set => ss = value; }
@@ -766,7 +766,7 @@ public unsafe struct ImageDosHeader
     public ushort Checksum { get => csum; set => csum = value; }
     public ushort IP { get => ip; set => ip = value; }
     public ushort CS { get => cs; set => cs = value; }
-    public ushort FileAddressOfRelocationTable { get => lfarlc; set => lfarlc = value; }
+    public ushort RelocationTableOffset { get => lfarlc; set => lfarlc = value; }
     public ushort OverlayNumber { get => ovno; set => ovno = value; }
     public unsafe Span<ushort> Reserved
     {
@@ -790,6 +790,6 @@ public unsafe struct ImageDosHeader
             }
         }
     }
-    public ushort FileAddressOfNewExeHeader { get => lfanew; set => lfanew = value; }
+    public ushort NewExeHeaderOffset { get => lfanew; set => lfanew = value; }
 }
 #endregion
