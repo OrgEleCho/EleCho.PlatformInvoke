@@ -735,14 +735,10 @@ public unsafe struct ImageDosHeader
         this.cs = cs;
         this.lfarlc = lfarlc;
         this.ovno = ovno;
-
-        res.CopyTo(Utils.NewSpanByReference(ref this.res[0], Math.Min(res.Length, 4)));
-
+        res.CopyTo(MemoryMarshal.CreateSpan(ref this.res[0], Math.Min(res.Length, 4)));
         this.oemid = oemid;
         this.oeminfo = oeminfo;
-
-        res2.CopyTo(Utils.NewSpanByReference(ref this.res2[0], Math.Min(res2.Length, 10)));
-
+        res2.CopyTo(MemoryMarshal.CreateSpan(ref this.res2[0], Math.Min(res2.Length, 10)));
         this.lfanew = lfanew;
     }
 
@@ -760,10 +756,10 @@ public unsafe struct ImageDosHeader
     public ushort CS { get => cs; set => cs = value; }
     public ushort RelocationTableOffset { get => lfarlc; set => lfarlc = value; }
     public ushort OverlayNumber { get => ovno; set => ovno = value; }
-    public unsafe Span<ushort> Reserved => Utils.NewSpanByReference(ref res[0], 4);
+    public unsafe Span<ushort> Reserved => MemoryMarshal.CreateSpan(ref res[0], 4);
     public ushort OemIdentifier { get => oemid; set => oemid = value; }
     public ushort OemInformation { get => oeminfo; set => oeminfo = value; }
-    public unsafe Span<ushort> Reserved2 => Utils.NewSpanByReference(ref res2[0], 10);
+    public unsafe Span<ushort> Reserved2 => MemoryMarshal.CreateSpan(ref res2[0], 10);
     public ushort NewExeHeaderOffset { get => lfanew; set => lfanew = value; }
 }
 #endregion
