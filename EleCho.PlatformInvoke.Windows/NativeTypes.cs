@@ -1,6 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
 using System;
 using System.Runtime.InteropServices;
+using EleCho.PlatformInvoke.Common;
+
 namespace EleCho.PlatformInvoke.Windows;
 
 #region Delegates
@@ -734,22 +736,12 @@ public unsafe struct ImageDosHeader
         this.lfarlc = lfarlc;
         this.ovno = ovno;
 
-        fixed(void* src = res) 
-        fixed(void* dest = this.res) 
-        {
-            int len = Math.Min(res.Length, 4);
-            Buffer.MemoryCopy(src, dest, len, len);
-        }
+        res.CopyTo(Utils.NewSpanByReference(ref this.res[0], Math.Min(res.Length, 4)));
 
         this.oemid = oemid;
         this.oeminfo = oeminfo;
 
-        fixed (void* src = res2)
-        fixed (void* dest = this.res2)
-        {
-            int len = Math.Min(res2.Length, 10);
-            Buffer.MemoryCopy(src, dest, len, len);
-        }
+        res2.CopyTo(Utils.NewSpanByReference(ref this.res2[0], Math.Min(res2.Length, 10)));
 
         this.lfanew = lfanew;
     }
@@ -768,28 +760,10 @@ public unsafe struct ImageDosHeader
     public ushort CS { get => cs; set => cs = value; }
     public ushort RelocationTableOffset { get => lfarlc; set => lfarlc = value; }
     public ushort OverlayNumber { get => ovno; set => ovno = value; }
-    public unsafe Span<ushort> Reserved
-    {
-        get
-        {
-            fixed (void* p = res)
-            {
-                return new Span<ushort>(p, 4);
-            }
-        }
-    }
+    public unsafe Span<ushort> Reserved => Utils.NewSpanByReference(ref res[0], 4);
     public ushort OemIdentifier { get => oemid; set => oemid = value; }
     public ushort OemInformation { get => oeminfo; set => oeminfo = value; }
-    public unsafe Span<ushort> Reserved2
-    {
-        get 
-        {
-            fixed(void* p = res2) 
-            {
-                return new Span<ushort>(p, 10);
-            }
-        }
-    }
+    public unsafe Span<ushort> Reserved2 => Utils.NewSpanByReference(ref res2[0], 10);
     public ushort NewExeHeaderOffset { get => lfanew; set => lfanew = value; }
 }
 #endregion
