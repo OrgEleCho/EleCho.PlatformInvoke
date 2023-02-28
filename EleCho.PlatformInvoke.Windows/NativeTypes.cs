@@ -1,6 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using System;
-using System.Runtime.InteropServices;
+﻿using System.Runtime.InteropServices;
+
 namespace EleCho.PlatformInvoke.Windows;
 
 #region Delegates
@@ -689,5 +688,109 @@ public struct DialogTemplate
     public short Y { get => y; set => y = value; }
     public short CX { get => cx; set => cx = value; }
     public short CY { get => cy; set => cy = value; }
+}
+#endregion
+
+#region ImageDosHeader
+[NativeType("IMAGE_DOS_HEADER")]
+[StructLayout(LayoutKind.Sequential)]
+public unsafe struct ImageDosHeader
+{
+    ushort magic;
+    ushort cblp;
+    ushort cp;
+    ushort crlc;
+    ushort cparhdr;
+    ushort minalloc;
+    ushort maxalloc;
+    ushort ss;
+    ushort sp;
+    ushort csum;
+    ushort ip;
+    ushort cs;
+    ushort lfarlc;
+    ushort ovno;
+    fixed ushort res[4];
+    ushort oemid;
+    ushort oeminfo;
+    fixed ushort res2[10];
+    ushort lfanew;
+
+    public ImageDosHeader(ushort magic, ushort cblp, ushort cp, ushort crlc, ushort cparhdr, ushort minalloc, ushort maxalloc, ushort ss, ushort sp, ushort csum, ushort ip, ushort cs, ushort lfarlc, ushort ovno, Span<ushort> res, ushort oemid, ushort oeminfo, Span<ushort> res2, ushort lfanew)
+    {
+        this.magic = magic;
+        this.cblp = cblp;
+        this.cp = cp;
+        this.crlc = crlc;
+        this.cparhdr = cparhdr;
+        this.minalloc = minalloc;
+        this.maxalloc = maxalloc;
+        this.ss = ss;
+        this.sp = sp;
+        this.csum = csum;
+        this.ip = ip;
+        this.cs = cs;
+        this.lfarlc = lfarlc;
+        this.ovno = ovno;
+        res.CopyTo(MemoryMarshal.CreateSpan(ref this.res[0], Math.Min(res.Length, 4)));
+        this.oemid = oemid;
+        this.oeminfo = oeminfo;
+        res2.CopyTo(MemoryMarshal.CreateSpan(ref this.res2[0], Math.Min(res2.Length, 10)));
+        this.lfanew = lfanew;
+    }
+
+    public ushort Magic { get => magic; set => magic = value; }
+    public ushort LastPageSize { get => cblp; set => cblp = value; }
+    public ushort PageCount { get => cp; set => cp = value; }
+    public ushort RelocationCount { get => crlc; set => crlc = value; }
+    public ushort HeaderSize { get => cparhdr; set => cparhdr = value; }
+    public ushort MinAllocation { get => minalloc; set => minalloc = value; }
+    public ushort MaxAllocation { get => maxalloc; set => maxalloc = value; }
+    public ushort SS { get => ss; set => ss = value; }
+    public ushort SP { get => sp; set => sp = value; }
+    public ushort Checksum { get => csum; set => csum = value; }
+    public ushort IP { get => ip; set => ip = value; }
+    public ushort CS { get => cs; set => cs = value; }
+    public ushort RelocationTableOffset { get => lfarlc; set => lfarlc = value; }
+    public ushort OverlayNumber { get => ovno; set => ovno = value; }
+    public unsafe Span<ushort> Reserved => MemoryMarshal.CreateSpan(ref res[0], 4);
+    public ushort OemIdentifier { get => oemid; set => oemid = value; }
+    public ushort OemInformation { get => oeminfo; set => oeminfo = value; }
+    public unsafe Span<ushort> Reserved2 => MemoryMarshal.CreateSpan(ref res2[0], 10);
+    public ushort NewExeHeaderOffset { get => lfanew; set => lfanew = value; }
+}
+#endregion
+
+#region ImageFileHeader
+[NativeType("IMAGE_FILE_HEADER")]
+[StructLayout(LayoutKind.Sequential)]
+public struct ImageFileHeader
+{
+    ImageFileMachine machine;
+    ushort numberOfSections;
+    uint timeDateStamp;
+    uint pointerToSymbolTable;
+    uint numberOfSymbols;
+    ushort sizeOfOptionalHeader;
+    ImageFileCharacteristic characteristics;
+
+    public ImageFileHeader(ImageFileMachine machine, ushort numberOfSections, uint timeDateStamp, uint pointerToSymbolTable, uint numberOfSymbols, ushort sizeOfOptionalHeader, ImageFileCharacteristic characteristics)
+    {
+        this.machine = machine;
+        this.numberOfSections = numberOfSections;
+        this.timeDateStamp = timeDateStamp;
+        this.pointerToSymbolTable = pointerToSymbolTable;
+        this.numberOfSymbols = numberOfSymbols;
+        this.sizeOfOptionalHeader = sizeOfOptionalHeader;
+        this.characteristics = characteristics;
+    }
+
+    public ImageFileMachine Machine { get => machine; set => machine = value; }
+    public ushort NumberOfSections { get => numberOfSections; set => numberOfSections = value; }
+    public uint TimeDateStamp { get => timeDateStamp; set => timeDateStamp = value; }
+    public uint PointerToSymbolTable { get => pointerToSymbolTable; set => pointerToSymbolTable = value; }
+    public uint NumberOfSymbols { get => numberOfSymbols; set => numberOfSymbols = value; }
+    public ushort SizeOfOptionalHeader { get => sizeOfOptionalHeader; set => sizeOfOptionalHeader = value; }
+    public ImageFileCharacteristic Characteristics { get => characteristics; set => characteristics = value; }
 }
 #endregion
